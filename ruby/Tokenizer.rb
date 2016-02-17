@@ -1,13 +1,13 @@
 ## Reference: https://www.youtube.com/watch?v=_EQ5jdrgOlU
 
-require "TokenType.rb"
-require "TokenData.rb"
-require "Token.rb"
+require_relative "TokenType.rb"
+require_relative "TokenData.rb"
+require_relative "Token.rb"
 
 class Tokenizer
 
   def initialize(str)
-    @token_datas = []
+    @token_datas = Array.new
     @str = str
     @last_token = nil
     @push_back = false
@@ -17,15 +17,15 @@ class Tokenizer
   end
 
   private
-  def define_language()
-    @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/), TokenType::INDENTIFIER)
-    @token_datas.push(TokenData.new(/^((-)?[0-9]+))/, TokenType::INTEGER_LITERAL)
-    @token_data.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL)
+  def define_language
+    @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/, TokenType::INDENTIFIER))
+    @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
+    @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))
 
-    tokens = [ /^(:=)/, /^(\\()/ , /^(\\))/, /^(\\.)/, /^(\\,)/]
+    tokens = [ /^(:=)/, /^(\()/ , /^(\))/, /^(\.)/, /^(\,)/]
 
     tokens.each do |regex|
-      @token_datas.push(TokenData.new("^(" << regex << ")", TokenType::TOKEN))
+      @token_datas.push(TokenData.new(regex, TokenType::TOKEN))
     end
   end
 
@@ -35,7 +35,7 @@ class Tokenizer
   end
 
   public
-  def next_token()
+  def next_token
     @str.strip!
 
     if @push_back
@@ -72,7 +72,7 @@ class Tokenizer
 
   public
   def has_next_token?
-    return !(str.empty?)
+    return !(@str.empty?)
   end
 
   public

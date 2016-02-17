@@ -12,7 +12,7 @@ class Token
 
   public
   def get_type
-    return @type
+    puts "Token: #{@token}"
   end
 
 end

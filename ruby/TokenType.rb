@@ -1,0 +1,13 @@
+class TokenType
+
+EMPTY_TOKEN = 0
+
+TOKEN = 1
+
+INDENTIFIER = 2
+
+INTEGER_LITERAL = 3
+
+STRING_LITERAL = 4
+
+end

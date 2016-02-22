@@ -1,15 +1,13 @@
 require_relative "Tokenizer.rb"
 
 def main
-  test_code = "var := 1
-
-    1 + 2
-    \"hello\""
+  test_code = "var:=9238493"
 
   tokenizer = Tokenizer.new(test_code)
 
   while(tokenizer.has_next_token?)
-    tokenizer.next_token().get_token()
+    puts "testing"
+    tokenizer.next_token
   end
 end
 

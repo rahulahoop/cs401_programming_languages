@@ -21,7 +21,7 @@ class Tokenizer
     @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
     @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))
 
-    tokens = [ /^(:=)/, /^(\()/ , /^(\))/, /^(\.)/, /^(\,)/]
+    tokens = [ /^(:=)/, /^(\()/ , /^(\))/, /^(\.)/, /^(\,)/, /^(;)/]
 
     tokens.each do |regex|
       @token_datas.push(TokenData.new(regex, TokenType::TOKEN))
@@ -62,14 +62,9 @@ class Tokenizer
         puts "last token: #{@last_token.to_s}"
         puts "\n"
 
-        if data.get_type() == TokenType::STRING_LITERAL
-          @last_token = Token.new(token_string[1..token_string.length-1], TokenType::STRING_LITERAL )
-          return @last_token
-        else
-          @last_token = Token.new(token_string, data.get_type)
-          @stored_tokens.push(@last_token)
-          return @last_token
-        end #if data
+        @last_token = Token.new(token_string, data.get_type)
+        @stored_tokens.push(@last_token)
+        return @last_token
       end#if matches
     end #each
 

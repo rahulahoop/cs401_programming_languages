@@ -1,7 +1,9 @@
 require_relative "Tokenizer.rb"
 
 def main
-  test_code = "var := 9238493"
+  test_code = "var := 9238493;test:=666;
+
+    string := \"I am a test\";"
 
   tokenizer = Tokenizer.new(test_code)
 

@@ -13,7 +13,11 @@ def main
     value6 >= value7;
     value8 == value9;
     value10 != value11;
-    "
+
+    blah + blah;
+    blah - blah;
+    blah * blah;
+    blah / blah;"
 
   tokenizer = Tokenizer.new(test_code)
 

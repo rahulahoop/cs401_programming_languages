@@ -39,6 +39,12 @@ class Tokenizer
     tokens.each do |regex|
       @token_datas.push(TokenData.new(regex, TokenType::TOKEN))
     end
+
+    # add math operators to language rules.
+    ops = [/\+/, /\-/, /\*/, /\//]
+    ops.each do |regex|
+      @token_datas.push(TokenData.new(regex, TokenType::OPERATOR))
+    end
   end
 
   public
@@ -70,7 +76,14 @@ class Tokenizer
 
         token_string = matches.to_s
 
-        @str = @str.sub(/^#{token_string}/, '')
+        if data.get_type == TokenType::OPERATOR
+          puts "TYPE\n\n"
+          @str = @str.sub(/#{Regexp.escape(token_string)}/, '')
+        else
+          puts "NOT TYPE \n\n"
+          @str = @str.sub(/^#{token_string}/, '')
+        end
+        #@str = @str.sub(/^#{token_string}/, '')
         puts "token string: #{token_string}"
         puts "str : #{@str}"
         puts "last token: #{@last_token.to_s}"

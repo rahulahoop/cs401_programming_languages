@@ -12,6 +12,8 @@ INTEGER_LITERAL = 3
 
 STRING_LITERAL = 4
 
+OPERATOR = 5
+
 BOOLEAN_OPERATOR = 6
 
 ASSIGNMENT = 7
@@ -32,6 +34,8 @@ def get_readable_type(int)
     return "INDENTIFIER"
   elsif int == 3
     return "INTEGER_LITERAL"
+  elsif int == 5
+    return "OPERATOR"
   elsif int == 6
     return "BOOLEAN_OPERATOR"
   elsif int == 7

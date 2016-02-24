@@ -6,7 +6,7 @@ EMPTY_TOKEN = 0
 
 TOKEN = 1
 
-INDENTIFIER = 2
+IDENTIFIER = 2
 
 INTEGER_LITERAL = 3
 
@@ -31,7 +31,7 @@ def get_readable_type(int)
   elsif int == 1
     return "TOKEN"
   elsif int == 2
-    return "INDENTIFIER"
+    return "IDENTIFIER"
   elsif int == 3
     return "INTEGER_LITERAL"
   elsif int == 5

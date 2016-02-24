@@ -22,7 +22,7 @@ class Token
   public
   def to_s
     type = @token_type.get_readable_type(@type)
-    return "< #{@token}, #{type} >"
+    return "{ #{@token}, #{type} }"
   end
 
 end

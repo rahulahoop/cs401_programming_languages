@@ -22,7 +22,6 @@ def main
   tokenizer = Tokenizer.new(test_code)
 
   while(tokenizer.has_next_token?)
-    puts "testing"
     tokenizer.next_token
   end
 

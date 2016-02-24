@@ -1,3 +1,5 @@
+
+# Stores the regex pattern and the token type it should be matched with.
 class TokenData
 
   def initialize(pattern, token_type)

@@ -1,3 +1,5 @@
+
+#Stores token types as constants. Closest thing to Enums in Ruby.
 class TokenType
 
 EMPTY_TOKEN = 0
@@ -18,6 +20,7 @@ KEYWORD = 8
 
 COMMENT = 9
 
+#returns a human readable string for debugging.
 public
 def get_readable_type(int)
 

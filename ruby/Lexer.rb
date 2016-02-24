@@ -3,14 +3,10 @@ require_relative "Tokenizer.rb"
 
 def main()
   source_file = ARGV[0]
-  source_code = open(source_file).read
-
-  lexer = Tokenizer.new(source_code)
-
-  while lexer.has_next_token?
-    puts lexer.next_token
+  lexer = Tokenizer.new
+  source_code = open(source_file, "r").each_line do |line|
+    lexer.parse_line(line)
   end
-
   puts lexer.get_stored_tokens
 
 end

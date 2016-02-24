@@ -8,16 +8,15 @@ require_relative "Token.rb"
 ##  regex rules defined in the define_language function. These parsed inputs are
 #   then stored with their type into an array to be verified later.
 class Tokenizer
-  def initialize(input)
+  def initialize()
     @stored_tokens = Array.new
     @token_datas = Array.new
     @push_back = false
     @last_token = nil
-    @input = input
+    @input = ""
 
     define_language()
   end
-
 
   private
   def define_language
@@ -52,8 +51,18 @@ class Tokenizer
     return @stored_tokens
   end
 
+
+public
+def parse_line(input)
+  @input = input
+  while has_next_token?
+    next_token
+  end
+end
+
+
   # reads in input string and finds the next matching regex.
-  public
+  private
   def next_token
     @input.strip!
 
@@ -95,7 +104,7 @@ class Tokenizer
   end #def
 
 
-  public
+  private
   def has_next_token?
     return !@input.empty?
   end

@@ -15,6 +15,7 @@ class Tokenizer
     define_language()
   end
 
+
   private
   def define_language
     @token_datas.push(TokenData.new(/^(\/\/.*$)/, TokenType::COMMENT))
@@ -23,10 +24,12 @@ class Tokenizer
     @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))
     @token_datas.push(TokenData.new(/^(:=)/, TokenType::ASSIGNMENT))
 
-
+    booleans =  [/^(<=)/, /^(>=)/, /^(>)/, /^(<)/, /^(==)/, /^(!=)/]
+    booleans.each do |regex|
+      @token_datas.push(TokenData.new(regex, TokenType::BOOLEAN_OPERATOR))
+    end
 
     tokens = [/^(\()/ , /^(\))/, /^(\.)/, /^(\,)/, /^(;)/]
-
     tokens.each do |regex|
       @token_datas.push(TokenData.new(regex, TokenType::TOKEN))
     end

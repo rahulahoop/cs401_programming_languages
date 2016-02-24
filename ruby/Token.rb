@@ -1,4 +1,4 @@
-require_relative "TokenType.rb"
+require "./TokenType.rb"
 
 # a parsed input is stored as a Token object with its type.
 class Token

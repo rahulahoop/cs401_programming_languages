@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require_relative "Tokenizer.rb"
+require "./Tokenizer.rb"
 
 def main()
   source_file = ARGV[0]

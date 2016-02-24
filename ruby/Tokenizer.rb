@@ -1,8 +1,8 @@
 ## Reference: https://www.youtube.com/watch?v=_EQ5jdrgOlU
 
-require_relative "TokenType.rb"
-require_relative "TokenData.rb"
-require_relative "Token.rb"
+require "./TokenType.rb"
+require "./TokenData.rb"
+require "./Token.rb"
 
 ### Parses through the input line by line and regex's out the input according to
 ##  regex rules defined in the define_language function. These parsed inputs are
@@ -40,7 +40,7 @@ class Tokenizer
     end
 
     # add math operators to language rules.
-    ops = [/\+/, /\-/, /\*/, /\//]
+    ops = [/\+/, /\-/, /\*/, /\//, /\%/]
     ops.each do |regex|
       @token_datas.push(TokenData.new(regex, TokenType::OPERATOR))
     end

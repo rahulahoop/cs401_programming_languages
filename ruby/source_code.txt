@@ -1,0 +1,20 @@
+1 + 1;
+2-2;
+3       *         3;
+4
+/
+4;
+
+variable := "String Literal";
+
+1 == 0; //this is always false
+1 < 0;
+1 > 0;
+1 >= 0;
+1 <= 0;
+1 != 0; //this is always true
+
+
+var1 * var2;
+
+var2 := var1;

@@ -9,11 +9,11 @@ require_relative "Token.rb"
 #   then stored with their type into an array to be verified later.
 class Tokenizer
   def initialize(input)
-    @token_datas = Array.new
     @stored_tokens = Array.new
-    @input = input
-    @last_token = nil
+    @token_datas = Array.new
     @push_back = false
+    @last_token = nil
+    @input = input
 
     define_language()
   end
@@ -22,10 +22,10 @@ class Tokenizer
   private
   def define_language
     # begin defining language rules. (/Rule/, Type of Token)
-    @token_datas.push(TokenData.new(/^(\/\/.*$)/, TokenType::COMMENT))
     @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/, TokenType::IDENTIFIER))
     @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
     @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))
+    @token_datas.push(TokenData.new(/^(\/\/.*$)/, TokenType::COMMENT))
     @token_datas.push(TokenData.new(/^(:=)/, TokenType::ASSIGNMENT))
 
     # adds boolean operators to the language rules
@@ -56,7 +56,7 @@ class Tokenizer
   public
   def next_token
     @input.strip!
-    
+
     if @push_back
       @push_back = false
       return @last_token
@@ -69,7 +69,6 @@ class Tokenizer
 
     @token_datas.each do |data|
       if matches = data.get_pattern().match(@input)
-
         token_string = matches.to_s
 
         if data.get_type == TokenType::OPERATOR

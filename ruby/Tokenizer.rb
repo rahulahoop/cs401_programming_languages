@@ -17,11 +17,12 @@ class Tokenizer
 
   private
   def define_language
+    @token_datas.push(TokenData.new(/^(\/\/.*$)/, TokenType::COMMENT))
     @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/, TokenType::INDENTIFIER))
     @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
     @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))
     @token_datas.push(TokenData.new(/^(:=)/, TokenType::ASSIGNMENT))
-    @token_datas.push(TokenData.new(/^(\/\/[a-zA-Z0-9]*)/, TokenType::COMMENT))
+
 
 
     tokens = [/^(\()/ , /^(\))/, /^(\.)/, /^(\,)/, /^(;)/]

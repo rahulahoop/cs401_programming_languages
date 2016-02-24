@@ -5,7 +5,7 @@ def main
 
     string := \"I am a test\";
 
-    //COMMENT
+                  //I am a comment;;;
 
     "
 

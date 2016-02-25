@@ -20,6 +20,12 @@ class Tokenizer
 
   private
   def define_language
+
+    keywords =  [/^(while)/, /^(do)/, /^(if)/, /^(else)/, /^(elsif)/, /^(for)/, /^(end)/, /^(class)/, /^(new)/, /^(return)/, /^(private)/, /^(public)/, /^(def)/, /^(nil)/, /^(true)/, /^(false)/]
+      keywords.each do |regex|
+        @token_datas.push(TokenData.new(regex, TokenType::KEYWORD))
+    end
+
     # begin defining language rules. (/Rule/, Type of Token)
     @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/, TokenType::IDENTIFIER))
     @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
@@ -81,7 +87,7 @@ end
       if matches = data.get_pattern.match(@input)
         token_string = matches.to_s
 
-        if data.get_type == TokenType::OPERATOR
+        if data.get_type == TokenType::OPERATOR || data.get_type == TokenType::TOKEN
           @input = @input.sub(/#{Regexp.escape(token_string)}/, '')
         else
           @input = @input.sub(/^#{token_string}/, '')

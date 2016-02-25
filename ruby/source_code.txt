@@ -19,3 +19,5 @@ variable := "String Literal";
 var1 * var2;
 
 var2 := var1;
+
+()

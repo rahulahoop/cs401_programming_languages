@@ -9,12 +9,12 @@ class TokenData
 
   public
   def get_pattern
-    return @pattern
+    @pattern
   end
 
   public
   def get_type
-    return @type
+    @type
   end
 
 end

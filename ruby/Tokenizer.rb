@@ -1,21 +1,21 @@
 ## Reference: https://www.youtube.com/watch?v=_EQ5jdrgOlU
 
-require "./TokenType.rb"
-require "./TokenData.rb"
-require "./Token.rb"
+require './TokenType.rb'
+require './TokenData.rb'
+require './Token.rb'
 
 ### Parses through the input line by line and regex's out the input according to
 ##  regex rules defined in the define_language function. These parsed inputs are
 #   then stored with their type into an array to be verified later.
 class Tokenizer
-  def initialize()
+  def initialize
     @stored_tokens = Array.new
     @token_datas = Array.new
     @push_back = false
     @last_token = nil
-    @input = ""
+    @input = ''
 
-    define_language()
+    define_language
   end
 
   private
@@ -34,21 +34,21 @@ class Tokenizer
     end
 
     # add special characters to the language rules.
-    tokens = [/^(\()/ , /^(\))/, /^(\.)/, /^(\,)/, /^(;)/]
+    tokens = [/^(\()/ , /^(\))/, /^(\.)/, /^(,)/, /^(;)/]
     tokens.each do |regex|
       @token_datas.push(TokenData.new(regex, TokenType::TOKEN))
     end
 
     # add math operators to language rules.
-    ops = [/\+/, /\-/, /\*/, /\//, /\%/]
+    ops = [/\+/, /\-/, /\*/, /\//, /%/]
     ops.each do |regex|
       @token_datas.push(TokenData.new(regex, TokenType::OPERATOR))
     end
   end
 
   public
-  def get_stored_tokens()
-    return @stored_tokens
+  def get_stored_tokens
+    @stored_tokens
   end
 
 
@@ -72,15 +72,15 @@ end
     end
 
     if @input.empty?
-      @last_token = Token.new("", TokenType::EMPTY_TOKEN)
+      @last_token = Token.new('', TokenType::EMPTY_TOKEN)
       return @last_token
     end
 
     @token_datas.each do |data|
-      if matches = data.get_pattern().match(@input)
+      if matches = data.get_pattern.match(@input)
         token_string = matches.to_s
 
-        if data.get_type == TokenType::OPERATOR
+        if data.get_type == TokenType::OPERATOR || data.get_type == TokenType::TOKEN
           @input = @input.sub(/#{Regexp.escape(token_string)}/, '')
         else
           @input = @input.sub(/^#{token_string}/, '')
@@ -99,14 +99,14 @@ end
       end#if matches
     end #each
 
-    raise Exception.new("Could not parse #{@str}")
+    raise Exception.new("Could not parse #{@input}")
 
   end #def
 
 
   private
   def has_next_token?
-    return !@input.empty?
+    !@input.empty?
   end
 
   #function to go back a step if need be.

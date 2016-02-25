@@ -1,4 +1,4 @@
-require "./TokenType.rb"
+require './TokenType.rb'
 
 # a parsed input is stored as a Token object with its type.
 class Token
@@ -10,7 +10,7 @@ class Token
 
   public
   def get_token
-    return @token
+    @token
   end
 
   public
@@ -22,7 +22,7 @@ class Token
   public
   def to_s
     type = @token_type.get_readable_type(@type)
-    return "{ #{@token}, #{type} }"
+    "{ #{@token}, #{type} }"
   end
 
 end

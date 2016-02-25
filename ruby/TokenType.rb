@@ -27,25 +27,25 @@ public
 def get_readable_type(int)
 
   if int == 0
-    return "EMPTY_TOKEN"
+    return 'EMPTY_TOKEN'
   elsif int == 1
-    return "TOKEN"
+    return 'TOKEN'
   elsif int == 2
-    return "IDENTIFIER"
+    return 'IDENTIFIER'
   elsif int == 3
-    return "INTEGER_LITERAL"
+    return 'INTEGER_LITERAL'
   elsif int == 5
-    return "OPERATOR"
+    return 'OPERATOR'
   elsif int == 6
-    return "BOOLEAN_OPERATOR"
+    return 'BOOLEAN_OPERATOR'
   elsif int == 7
-    return "ASSIGNMENT"
+    return 'ASSIGNMENT'
   elsif int == 8
-    return "KEYWORD"
+    return 'KEYWORD'
   elsif int == 9
-    return "COMMENT"
+    return 'COMMENT'
   else
-    return "STRING_LITERAL"
+    return 'STRING_LITERAL'
   end
 
 end

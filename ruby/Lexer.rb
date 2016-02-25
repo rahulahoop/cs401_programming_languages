@@ -1,13 +1,21 @@
 #!/usr/bin/ruby
 require './Tokenizer.rb'
+require './syntaxer.rb'
 
 def main
   source_file = ARGV[0]
-  lexer = Tokenizer.new
+  tokenizer = Tokenizer.new
+  syntaxer = Syntaxer.new(tokenizer)
+
+  puts "parsing"
   open(source_file, 'r').each_line do |line|
-    lexer.parse_line(line)
+    tokenizer.parse_line(line)
   end
-  puts lexer.get_stored_tokens
+
+  puts tokenizer.get_stored_tokens
+
+  puts "validating"
+  syntaxer.parse_tokens
 
 end
 

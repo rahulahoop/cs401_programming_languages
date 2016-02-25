@@ -55,15 +55,15 @@ class Tokenizer
 public
 def parse_line(input)
   @input = input
-  while has_next_token?
-    next_token
+  while has_next_input?
+    next_input
   end
 end
 
 
   # reads in input string and finds the next matching regex.
   private
-  def next_token
+  def next_input
     @input.strip!
 
     if @push_back
@@ -76,6 +76,7 @@ end
       return @last_token
     end
 
+    puts "looping"
     @token_datas.each do |data|
       if matches = data.get_pattern.match(@input)
         token_string = matches.to_s
@@ -105,7 +106,7 @@ end
 
 
   private
-  def has_next_token?
+  def has_next_input?
     !@input.empty?
   end
 
@@ -114,6 +115,18 @@ end
     if @last_token != nil
       @push_back = true
     end
+  end
+
+
+  public
+  def has_next_token?
+    @stored_tokens.empty?
+  end
+
+  #get first token in the stored tokens array
+  public
+  def next_token
+    @stored_tokens.shift
   end
 
 end #class

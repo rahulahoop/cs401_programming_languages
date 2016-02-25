@@ -80,7 +80,7 @@ end
       if matches = data.get_pattern.match(@input)
         token_string = matches.to_s
 
-        if data.get_type == TokenType::OPERATOR || data.get_type == TokenType::TOKEN
+        if data.get_type == TokenType::OPERATOR
           @input = @input.sub(/#{Regexp.escape(token_string)}/, '')
         else
           @input = @input.sub(/^#{token_string}/, '')

@@ -1,5 +1,3 @@
-## Reference: https://www.youtube.com/watch?v=_EQ5jdrgOlU
-
 require './TokenType.rb'
 require './TokenData.rb'
 require './Token.rb'

@@ -22,7 +22,41 @@ class Syntaxer
 
         if @last_token.get_type == TokenType::IDENTIFIER
           check_identifier_rules(current)
+
+        elsif @last_token.get_type == TokenType::INTEGER_LITERAL
+          check_integer_literal_rules(current)
+
+        elsif @last_token.get_type == TokenType::OPERATOR
+          check_operator_rules(current)
+
+        elsif @last_token.get_type == TokenType::BOOLEAN_OPERATOR
+          check_boolean_operator_rules(current)
+
+        elsif @last_token.get_type == TokenType::ASSIGNMENT
+          check_assigment_rules(current)
+
+        elsif @last_token.get_type == TokenType::IF_WHILE_KEYWORD
+          check_if_while_keyword_rules(current)
+
+        elsif @last_token.get_type == TokenType::THEN_ELSE_DO_KEYWORD
+          check_then_else_do_keyword_rules(current)
+
+        elsif @last_token.get_type == TokenType::AND_KEYWORD
+          check_and_keyword_rules(current)
+
+        elsif @last_token.get_type == TokenType::NOT_KEYWORD
+          check_not_keyword_rules(current)
+
+        elsif @last_token.get_type == TokenType::END_KEYWORD
+          check_end_keyword_rules(current)
+
+        elsif @last_token.get_type == TokenType::BOOLEAN_KEYWORD
+          check_boolean_keyword_rules(current)
+
+        elsif @last_token.get_type == TokenType::COMMENT
+          check_comment_rules(current)
         end
+
         @last_token = current
       end #if last_token
     end #while
@@ -47,6 +81,78 @@ class Syntaxer
         # do nothing b/c its valid
     end
 
+  end
+
+  private
+  def check_integer_literal_rules(current)
+
+    
+  end
+
+  private
+  def check_integer_literal_rules(current)
+
+    
+  end
+
+  private
+  def check_operator_rules(current)
+
+    
+  end
+
+  private
+  def check_boolean_operator_rules(current)
+
+    
+  end
+
+  private
+  def check_assignment_rules(current)
+
+    
+  end
+
+  private
+  def check_if_while_keyword_rules(current)
+
+    
+  end
+
+  private
+  def check_then_else_do_keyword_rules(current)
+
+    
+  end
+
+  private
+  def check_and_keyword_rules(current)
+
+    
+  end
+
+  private
+  def check_not_keyword_rules(current)
+
+    
+  end
+
+  private
+  def check_end_keyword_rules(current)
+
+    
+  end
+
+  private
+  def check_boolean_keyword_rules(current)
+
+    
+  end
+
+  private
+  def check_comment_keyword_rules(current)
+
+    
   end
 
   private

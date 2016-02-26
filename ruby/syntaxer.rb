@@ -7,7 +7,6 @@ class Syntaxer
   def initialize(tokenizer)
     @tokenizer = tokenizer
     @last_token
-    @token_input
 
   end
 
@@ -57,7 +56,7 @@ class Syntaxer
         @last_token = current
       end #if last_token
     end #while
-    puts "program syntactically correct!!!!!!! (: "
+    puts 'program syntactically correct!!!!!!! (: '
   end #def
 
   private
@@ -304,7 +303,7 @@ class Syntaxer
   private
   def check_not_keyword_rules(current)
     type = current.get_type
-    if(type != TokenType::BOOLEAN_KEYWORD || type != TokenType::IDENTIFIER)
+    if type != TokenType::BOOLEAN_KEYWORD || type != TokenType::IDENTIFIER
       raise_syntax_error(current)
     end
     
@@ -313,7 +312,7 @@ class Syntaxer
   private
   def check_end_keyword_rules(current)
     type = current.get_type
-    if(type != TokenType::TOKEN)
+    if type != TokenType::TOKEN
       raise_syntax_error(current)
     end
     
@@ -322,8 +321,7 @@ class Syntaxer
   private
   def check_boolean_keyword_rules(current)
     type = current.get_type
-    if(type != TokenType::AND_KEYWORD || type != TokenType::THEN_ELSE_DO_KEYWORD ||
-        type!= TokenType::BOOLEAN_OPERATOR)
+    if type != TokenType::AND_KEYWORD || type != TokenType::THEN_ELSE_DO_KEYWORD || type!= TokenType::BOOLEAN_OPERATOR
       raise_syntax_error(current)
     end
     

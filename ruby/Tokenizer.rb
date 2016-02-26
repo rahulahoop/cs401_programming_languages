@@ -133,8 +133,7 @@ end
   #get first token in the stored tokens array
   public
   def next_token
-    shift = @stored_tokens.shift
-    return shift
+    @stored_tokens.shift
   end
 
 end #class

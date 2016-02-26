@@ -11,9 +11,6 @@ def main
     tokenizer.parse_line(line)
   end
 
-  #puts tokenizer.get_stored_tokens
-
-  puts "validating Tokens."
   syntaxer.parse_tokens
 
 end

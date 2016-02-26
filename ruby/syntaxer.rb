@@ -52,9 +52,6 @@ class Syntaxer
 
         elsif @last_token.get_type == TokenType::BOOLEAN_KEYWORD
           check_boolean_keyword_rules(current)
-
-        elsif @last_token.get_type == TokenType::COMMENT
-          check_comment_rules(current)
         end
 
         @last_token = current
@@ -214,43 +211,122 @@ class Syntaxer
 
   private
   def check_if_while_keyword_rules(current)
+    case current.get_type
 
-    
+      when TokenType::BOOLEAN_OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::THEN_ELSE_DO_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::ASSIGNMENT
+        raise_syntax_error(current)
+
+      when TokenType::IF_WHILE_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::AND_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::END_KEYWORD
+        raise_syntax_error(current)
+
+      else
+
+    end
+
   end
 
   private
   def check_then_else_do_keyword_rules(current)
+    case current.get_type
+      when TokenType::THEN_ELSE_DO_KEYWORD
+        raise_syntax_error(current)
 
+      when TokenType::OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::BOOLEAN_OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::ASSIGNMENT
+        raise_syntax_error(current)
+
+      when TokenType::AND_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::NOT_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::BOOLEAN_KEYWORD
+        raise_syntax_error(current)
+
+      else
+        #do nothing b/c its valid
+
+    end
     
   end
 
   private
   def check_and_keyword_rules(current)
+    case current.get_type
 
-    
+      when TokenType::BOOLEAN_OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::THEN_ELSE_DO_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::ASSIGNMENT
+        raise_syntax_error(current)
+
+      when TokenType::IF_WHILE_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::AND_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::END_KEYWORD
+        raise_syntax_error(current)
+
+      else
+
+    end
+
   end
 
   private
   def check_not_keyword_rules(current)
-
+    type = current.get_type
+    if(type != TokenType::BOOLEAN_KEYWORD || type != TokenType::IDENTIFIER)
+      raise_syntax_error(current)
+    end
     
   end
 
   private
   def check_end_keyword_rules(current)
-
+    type = current.get_type
+    if(type != TokenType::TOKEN)
+      raise_syntax_error(current)
+    end
     
   end
 
   private
   def check_boolean_keyword_rules(current)
-
-    
-  end
-
-  private
-  def check_comment_keyword_rules(current)
-
+    type = current.get_type
+    if(type != TokenType::AND_KEYWORD || type != TokenType::THEN_ELSE_DO_KEYWORD ||
+        type!= TokenType::BOOLEAN_OPERATOR)
+      raise_syntax_error(current)
+    end
     
   end
 
@@ -258,6 +334,5 @@ class Syntaxer
   def raise_syntax_error(current)
     raise Exception.new("Invalid Syntax => #{@last_token.get_token} #{current.get_token}")
   end
-
 
 end

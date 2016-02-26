@@ -21,12 +21,15 @@ class Tokenizer
   private
   def define_language
 
-    keywords =  [/^(while)/, /^(do)/, /^(if)/, /^(else)/, /^(elsif)/, /^(for)/, /^(end)/, /^(class)/, /^(new)/, /^(return)/, /^(private)/, /^(public)/, /^(def)/, /^(nil)/, /^(true)/, /^(false)/]
-      keywords.each do |regex|
-        @token_datas.push(TokenData.new(regex, TokenType::KEYWORD))
-    end
-
     # begin defining language rules. (/Rule/, Type of Token)
+    @token_datas.push(TokenData.new(/^(if)/, TokenType::IF_WHILE_KEYWORD))
+    @token_datas.push(TokenData.new(/^(while)/, TokenType::IF_WHILE_KEYWORD))
+    @token_datas.push(TokenData.new(/^(then)/, TokenType::THEN_ELSE_DO_KEYWORD))
+    @token_datas.push(TokenData.new(/^(else)/, TokenType::THEN_ELSE_DO_KEYWORD))
+    @token_datas.push(TokenData.new(/^(do)/, TokenType::THEN_ELSE_DO_KEYWORD))
+    @token_datas.push(TokenData.new(/^(and)/, TokenType::AND_KEYWORD))
+    @token_datas.push(TokenData.new(/^(not)/, TokenType::NOT_KEYWORD))
+    @token_datas.push(TokenData.new(/^(end)/, TokenType::END_KEYWORD))
     @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/, TokenType::IDENTIFIER))
     @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
     @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))

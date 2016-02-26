@@ -32,7 +32,6 @@ class Tokenizer
     @token_datas.push(TokenData.new(/^(end)/, TokenType::END_KEYWORD))
     @token_datas.push(TokenData.new(/^([a-zA-Z][a-zA-Z0-90]*)/, TokenType::IDENTIFIER))
     @token_datas.push(TokenData.new(/^((-)?[0-9]+)/, TokenType::INTEGER_LITERAL))
-    @token_datas.push(TokenData.new(/^(".*")/, TokenType::STRING_LITERAL))
     @token_datas.push(TokenData.new(/^(\/\/.*$)/, TokenType::COMMENT))
     @token_datas.push(TokenData.new(/^(:=)/, TokenType::ASSIGNMENT))
 

@@ -6,7 +6,6 @@
 4
 16 % 4;
 
-variable := "String Literal";
 
 1 == 0; //this is always false
 1 < 0;
@@ -21,5 +20,7 @@ var1 * var2;
 var2 := var1;
 
 while true
+
+if var1 < var 2 do print(); end;
 
 def method()

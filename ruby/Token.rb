@@ -15,7 +15,7 @@ class Token
 
   public
   def get_type
-    puts "Token: #{@token}"
+    @type
   end
 
   # returns a human readable string with input and type for debugging.

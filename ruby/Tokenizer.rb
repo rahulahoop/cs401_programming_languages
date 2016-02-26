@@ -84,7 +84,6 @@ end
       return @last_token
     end
 
-    puts "looping"
     @token_datas.each do |data|
       if matches = data.get_pattern.match(@input)
         token_string = matches.to_s
@@ -134,7 +133,8 @@ end
   #get first token in the stored tokens array
   public
   def next_token
-    @stored_tokens.shift
+    shift = @stored_tokens.shift
+    return shift
   end
 
 end #class

@@ -7,14 +7,13 @@ def main
   tokenizer = Tokenizer.new
   syntaxer = Syntaxer.new(tokenizer)
 
-  puts "parsing"
   open(source_file, 'r').each_line do |line|
     tokenizer.parse_line(line)
   end
 
-  puts tokenizer.get_stored_tokens
+  #puts tokenizer.get_stored_tokens
 
-  puts "validating"
+  puts "validating Tokens."
   syntaxer.parse_tokens
 
 end

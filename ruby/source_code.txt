@@ -1,6 +1,6 @@
 while iter < N do // iterativefibonacci
 tmp := prev + curr;
-prev := curr;
+prev := curr
 curr := tmp ;
 iter := iter + 1;
 end;

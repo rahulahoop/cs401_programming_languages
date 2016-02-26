@@ -33,7 +33,7 @@ class Syntaxer
           check_boolean_operator_rules(current)
 
         elsif @last_token.get_type == TokenType::ASSIGNMENT
-          check_assigment_rules(current)
+          check_assignment_rules(current)
 
         elsif @last_token.get_type == TokenType::IF_WHILE_KEYWORD
           check_if_while_keyword_rules(current)

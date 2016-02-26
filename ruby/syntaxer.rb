@@ -146,7 +146,35 @@ class Syntaxer
 
   private
   def check_boolean_operator_rules(current)
+    case current.get_type
+      
+      when TokenType::BOOLEAN_OPERATOR
+        raise_syntax_error(current)
 
+      when TokenType::OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::THEN_ELSE_DO_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::ASSIGNMENT
+        raise_syntax_error(current)
+
+      when TokenType::IF_WHILE_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::AND_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::NOT_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::END_KEYWORD
+        raise_syntax_error(current)
+
+      else
+
+    end
     
   end
 

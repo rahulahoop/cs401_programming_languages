@@ -101,7 +101,6 @@ class Syntaxer
       when TokenType::END_KEYWORD
         raise_syntax_error(current)
 
-
       else
         #do nothing b/c its valid.
     end

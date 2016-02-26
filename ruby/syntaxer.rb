@@ -78,26 +78,69 @@ class Syntaxer
         raise_syntax_error(current)
 
       else
-        # do nothing b/c its valid
+        # do nothing b/c its valid.
     end
 
   end
 
   private
   def check_integer_literal_rules(current)
+    case current.get_type
+      when TokenType::INTEGER_LITERAL
+        raise_syntax_error(current)
 
-    
-  end
+      when TokenType::IDENTIFIER
+        raise_syntax_error(current)
 
-  private
-  def check_integer_literal_rules(current)
+      when TokenType::ASSIGNMENT
+        raise_syntax_error(current)
 
+      when TokenType::IF_WHILE_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::BOOLEAN_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::END_KEYWORD
+        raise_syntax_error(current)
+
+
+      else
+        #do nothing b/c its valid.
+    end
     
   end
 
   private
   def check_operator_rules(current)
+    case current.get_type
+      when TokenType::OPERATOR
+        raise_syntax_error(current)
 
+      when TokenType::BOOLEAN_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::BOOLEAN_OPERATOR
+        raise_syntax_error(current)
+
+      when TokenType::IF_WHILE_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::THEN_ELSE_DO_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::AND_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::NOT_KEYWORD
+        raise_syntax_error(current)
+
+      when TokenType::END_KEYWORD
+        raise_syntax_error(current)
+
+      else
+        #do nothing because its valid.
+    end
     
   end
 

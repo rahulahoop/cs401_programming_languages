@@ -1,30 +1,33 @@
 start :- write('~$~'),nl,
-        read_line_to_codes(user_input,Cs),
-        atom_codes(A,Cs),
-        atomic_list_concat(L,' ', A),
-        parse(L).
+	read_line_to_codes(user_input,Current_string),
+	atom_codes(A,Current_string),
+	atomic_list_concat(List,' ', A),
+	/*atomic_list_concat(L,'.', A),
+	atomic_list-concat(L,'?', A),*/
+	parse(List).
 
 parse([X,is,a,Y|_]) :-
-        assert(connect(X,Y)),
-        write('ok'),nl,
-        start.
+	assert(connect(X,Y)),
+	write('ok'),nl,
+	start.
 
-parse([A,X,is,a,Y|_]) :-
-        assert(connect(X,Y)),
-        write('ok'),nl,
-        start.
+parse(['A',Y,is,a,Z|_]) :-
+	assert(connect(Y,Z)),
+	write('ok'),nl,
+	start.
 
-parse([Is,X,a,Y|_]) :-
-        connected(X,Y).
+parse(['Is',X,a,Z|_]) :-
+	is_connected(X,Z).
 
-parse([Is,a,X,a,Y|_]) :-
-        connected(X,Y).
+parse(['Is',a,Y,a,Z|_]) :-
+	is_connected(Y,Z).
 
 parse([bye|_]) :-
-        write('goodbye'),nl.
+	write('goodbye'),nl.
 
-connected(X,Y) :-
-        connect(X,Y) -> write('true'),nl,start;
-        connect(X,Z),
-        connect(Z,Y) -> write('true'),nl,start;
-        write('yes'),nl,start.
+is_connected(X,Y) :-
+	connect(X,Y) -> write('true'),nl,start;
+	connect(Y,Z),
+	connect(X,Z) -> write('true'),nl,start;
+	write('unknown'),nl,
+	start.

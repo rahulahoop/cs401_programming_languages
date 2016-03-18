@@ -25,9 +25,9 @@ parse(['Is',a,Y,a,Z|_]) :-
 parse([bye|_]) :-
 	write('goodbye'),nl.
 
-is_connected(X,Y) :-
-	connect(X,Y) -> write('true'),nl,start;
+is_connected(X,Z) :-
+	connect(X,Y) -> write('yes'),nl,start;
 	connect(Y,Z),
-	connect(X,Z) -> write('true'),nl,start;
+	connect(X,Z) -> write('yes'),nl,start;
 	write('unknown'),nl,
 	start.

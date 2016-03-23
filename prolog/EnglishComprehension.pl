@@ -1,33 +1,37 @@
-start :- write('~$~'),nl,
+start_comprehension :- write('-------------------------'),nl,
 	read_line_to_codes(user_input,Current_string),
 	atom_codes(A,Current_string),
-	atomic_list_concat(List,' ', A),
-	/*atomic_list_concat(L,'.', A),
-	atomic_list-concat(L,'?', A),*/
+	atomic_list_concat(List,' ',A),
 	parse(List).
 
 parse([X,is,a,Y|_]) :-
 	assert(connect(X,Y)),
 	write('ok'),nl,
-	start.
+	start_comprehension.
 
-parse(['A',Y,is,a,Z|_]) :-
-	assert(connect(Y,Z)),
+parse(['A',X,is,a,Y|_]):-
+	assert(connect(X,Y)),
 	write('ok'),nl,
-	start.
+	start_comprehension.
 
-parse(['Is',X,a,Z|_]) :-
-	is_connected(X,Z).
+parse(['Is',X,a,Y|_]) :-
+	connected(X,Y).
 
-parse(['Is',a,Y,a,Z|_]) :-
-	is_connected(Y,Z).
+parse(['Is',a,X,a,Y|_]) :-
+	connected(X,Y).
 
 parse([bye|_]) :-
-	write('goodbye'),nl.
+	write('end_comprehension'),nl.
 
-is_connected(X,Z) :-
-	connect(X,Y) -> write('yes'),nl,start;
-	connect(Y,Z),
-	connect(X,Z) -> write('yes'),nl,start;
-	write('unknown'),nl,
-	start.
+connected(X,Y) :-
+        connect(X,Y) -> write('yes'),nl,
+	start_comprehension;
+	connect(Y,X) -> write('yes'),nl,
+	start_comprehension;
+        connect(X,Z),
+        connect(Z,Y) -> write('yes'),nl,
+        start_comprehension;
+        \+ connect(Z,Y) -> write('no'),nl,
+        start_comprehension;
+        write('unknown'),nl,
+        start_comprehension.

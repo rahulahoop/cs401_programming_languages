@@ -1,7 +1,7 @@
 -module(uniformGen).
 -export([gen/0]).
 
-gen() ->
+gen ->
   receive
     x ->
       X0 = random:uniform()

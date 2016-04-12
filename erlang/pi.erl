@@ -1,8 +1,19 @@
 -module(pi).
--export([calc/1, calc/3]).
+-export([monte/2]).
+
+%N = iterations X = num actors.
+monte(N, X) ->
+    genActors(X, 0).
+
+
+genActors(X, Y) ->
+    when X > Y ->
+      spawn(uniformGen:gen).
+    genActors(X, Y+1).
 
 
 %% monte carlo code from source in assignment. Take this and make it use actors.
+%% Tally is N.
 calc(Tally) ->
 calc(Tally, 0, 0).
 

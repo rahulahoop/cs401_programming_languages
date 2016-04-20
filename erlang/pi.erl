@@ -1,34 +1,66 @@
 -module(pi).
--compile(export_all).
--export([calc/1, calc/3]).
 
-%% monte carlo code from source in assignment. Take this and make it use actors.
-%% Tally is N.
-monte(N, X) ->
-  Matches = [],
-  Tries = .
+-export([montecarlo/2]).
+-export([spawn_actor/2]).
 
+-define(PROCESSES, X).
 
+%% Starts a montecarlo simulation with N iterations.
+%% Uses a default number of actors to work out
+%% the final C. Returns estimation of the value pi.
+-spec montecarlo(integer()) -> integer().
+montecarlo(N, X) ->
+    io:format("Starting montecarlo simulation with N = ~p~n", [N]),
+    Np = N div ?PROCESSES,
+    Pids = create_actors(?PROCESSES, Np),
+    C = wait_for_results(length(Pids)),
+    Pi = pi_formula(C, N),
+    io:format("Estimation of pi : ~p~n",[Pi]),
+    Error = abs(math:pi() - Pi),
+    io:format("Absolute Error: ~p~n", [Error]).
 
-%if we calculate a bunch of random numbers less than 1 and put them into a list
-%and then sum the list into one number
-%put that list in Match in the function 4 * matchs / done;
-%this will calculate pi.
-calc(Tally) ->
-  calc(Tally, 0, 0).
+%% Spawns a workout of an asynchronous Cp.
+-spec spawn_actor(pid(), integer()) -> {ok, pid()}.
+spawn_actor(Manager, Np) ->
+    Pid = spawn_link(pihelper, helper, [Manager, Np]),
+    {ok, Pid}.
 
-calc(Tally, Matches, Done) ->
-  X = random:uniform(), Y = random:uniform(),
-  calc (Tally – 1, if X*X + Y*Y Matches + 1; true -> Matches end, Done + 1).
+%% C: Coordinates within the target (circle)
+%% N: Total number of generated coordinates.
+%% C/N: Ratio of coordinates that falls within the target.
+%%
+%% C/N = Pi*Radio^2/4
+%%
+%% Given that Radio = 1:
+%%
+%% Pi = 4*C/N
+pi_formula(C,N) ->
+    4*C/N.
 
-calc(0, Matches, Done) -> 4 * Matches / Done;
+create_actors(Total, Np) ->
+    create_actors(Total, Np, []).
 
-gen() ->
-  recieve
-    rand ->
-      X = random:uniform(),
-      Y = random:uniform(),
-      if X * X + Y * Y  < 1 -> 1;
-      true -> 0;
-      end.
-  end
+create_actors(0, _, Pids) ->
+    Pids;
+create_actors(Total, Np, Pids) ->
+    NewPid = new_actor(Np),
+    create_actors(Total-1, Np, [NewPid | Pids]).
+
+new_actor(Np) ->
+    {ok, Pid} = spawn_actor(self(), Np),
+    Pid.
+
+wait_for_results(N) ->
+    wait_for_results(N, 0).
+
+wait_for_results(0, C) ->
+    C;
+wait_for_results(N, C) ->
+    receive
+        {c, NewC, From} ->
+           %% io:format("Cp = ~p from ~p", [NewC, From]),
+            wait_for_results(N-1, C+NewC)
+    after
+        1000 ->
+            timeout
+    end.

@@ -8,7 +8,7 @@
 %% Starts a montecarlo simulation with N iterations.
 %% Uses a default number of actors to work out
 %% the final C. Returns estimation of the value pi.
--spec montecarlo(integer()) -> integer().
+-spec montecarlo(integer(), integer()) -> integer().
 montecarlo(N, X) ->
     io:format("Starting montecarlo simulation with N = ~p~n", [N]),
     Np = N div ?PROCESSES,

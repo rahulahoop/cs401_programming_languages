@@ -228,7 +228,7 @@ user_input(Input, Board) ->
 
   % Turn X and Y into Strings then into Ints
   X_String = string:strip(X_In, right, $\n),
-  Y_String = string:strip(Y_C_S, right, $\n),
+  Y_String = string:strip(Y_In, right, $\n),
 
   X_To_Int = list_to_integer(X_String),
   Y_To_Int = list_to_integer(Y_String),
@@ -309,7 +309,7 @@ print_board(Board, Index) ->
 
     _ ->
       ok
-      
+
   end.
 
 

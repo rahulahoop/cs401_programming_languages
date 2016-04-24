@@ -1,4 +1,4 @@
--module(tictactoe).
+-module(t3).
 -compile(export_all).
 
 % when starting up erl for distributed environment give the machines the names:

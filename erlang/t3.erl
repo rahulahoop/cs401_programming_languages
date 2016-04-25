@@ -1,3 +1,18 @@
+% running:
+% Open two terminals and connect to moat.cis.uab.edu
+% You should see two vulcan machines
+% Go to the directory where this file is saved
+% Type below where YOURNAME and OTHERNAME are consistent
+%   1$ erl -sname YOURNAME
+%   2$ erl -sname OTHERNAME
+%
+% Compile this file in both erls. c(t3).
+%
+% start the game with player one(can be you or other, using you)
+%   (YOURNAME@vulcanX)> t3:newgame().
+% Connect to game from player two
+%   (OTHERNAME@vulcanY)> t3:playwith(YOURNAME@vulcanX).
+
 -module(t3).
 
 
